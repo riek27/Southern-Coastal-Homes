@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Southern Coastal Homes | Award-Winning Custom Home Builder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --charcoal: #2c2c2c;
+            --gold: #bfa06b;
+            --white: #ffffff;
+            --beige: #f5f2ed;
+            --light-gray: #f8f8f8;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .logo-icon {
+            margin-right: 8px;
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            position: relative;
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: var(--transition);
+            border-radius: 0 0 5px 5px;
+            overflow: hidden;
+            z-index: 100;
+        }
+
+        nav ul li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li {
+            margin: 0;
+            width: 100%;
+        }
+
+        .dropdown li a {
+            display: block;
+            padding: 0.9rem 1.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .dropdown li a:hover {
+            background-color: var(--beige);
+            padding-left: 1.8rem;
+        }
+
+        .dropdown li:last-child a {
+            border-bottom: none;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--charcoal);
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Slider */
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scale(1.1);
+            transition: opacity 1.5s ease, transform 8s ease;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 20%;
+            left: 10%;
+            color: var(--white);
+            max-width: 600px;
+            padding: 2rem;
+            background-color: rgba(44, 44, 44, 0.7);
+            border-left: 4px solid var(--gold);
+        }
+
+        .slide-content h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .slide-content p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--charcoal);
+            padding: 0.8rem 1.8rem;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .btn:hover {
+            background-color: #a88a5c;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 10;
+        }
+
+        .slider-control {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-control.active {
+            background-color: var(--white);
+            transform: scale(1.2);
+        }
+
+        /* Featured Homes */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+
+        .homes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .home-card {
+            background-color: var(--white);
+            border-radius: 3px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .home-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .home-card-content {
+            padding: 1.5rem;
+        }
+
+        .home-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .home-card .location {
+            color: var(--gold);
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonial */
+        .testimonial {
+            background-color: var(--beige);
+            position: relative;
+        }
+
+        .testimonial-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.2rem;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .testimonial-content:before, .testimonial-content:after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .testimonial-content:before {
+            top: -20px;
+            left: 20px;
+        }
+
+        .testimonial-content:after {
+            bottom: -40px;
+            right: 20px;
+        }
+
+        .client-name {
+            margin-top: 2rem;
+            font-weight: 600;
+            font-style: normal;
+            color: var(--charcoal);
+        }
+
+        /* Awards */
+        .awards {
+            background-color: var(--light-gray);
+        }
+
+        .awards-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .award-logo {
+            margin-top: 2rem;
+            display: inline-block;
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .award-logo img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--charcoal);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            color: var(--white);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--gold);
+            margin-top: 3px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--gold);
+            color: var(--charcoal);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Page Content Styles */
+        .page-header {
+            height: 40vh;
+            background-color: var(--charcoal);
+            background-image: linear-gradient(rgba(44, 44, 44, 0.8), rgba(44, 44, 44, 0.8)), url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--white);
+        }
+
+        .page-content {
+            padding: 5rem 0;
+        }
+
+        /* About Page */
+        .about-section {
+            margin-bottom: 4rem;
+        }
+
+        .team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1.5rem;
+            border: 5px solid var(--beige);
+        }
+
+        .team-member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Portfolio Page */
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            background-color: var(--light-gray);
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--gold);
+            color: var(--white);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 3px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 300px;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(44, 44, 44, 0.9));
+            color: var(--white);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-item-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* FAQ Page */
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .faq-question i {
+            color: var(--gold);
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 1rem;
+            color: #555;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* Contact Page */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            font-family: 'Lato', sans-serif;
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Services Page */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 3px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: var(--transition);
+            border-top: 4px solid var(--gold);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            transition: var(--transition);
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .mobile-nav ul li {
+            margin-bottom: 1rem;
+        }
+
+        .mobile-nav ul li a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .mobile-nav-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--charcoal);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .slide-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 3rem 0;
+            }
+            
+            .slide-content {
+                left: 5%;
+                right: 5%;
+                bottom: 10%;
+            }
+            
+            .slide-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .homes-grid, .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-home logo-icon"></i>
+                Southern <span>Coastal</span> Homes
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT US</a></li>
+                    <li class="has-dropdown">
+                        <a href="portfolio.html">PORTFOLIO <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="portfolio.html#featured">Featured Homes</a></li>
+                            <li><a href="portfolio.html#remodels">Remodels</a></li>
+                            <li><a href="portfolio.html#gallery">Home Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="services.html">SERVICES</a></li>
+                    <li><a href="faqs.html">FAQS</a></li>
+                    <li><a href="contact.html">CONTACT US</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" id="mobileNavClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="about.html">ABOUT US</a></li>
+            <li><a href="portfolio.html">PORTFOLIO</a></li>
+            <li><a href="services.html">SERVICES</a></li>
+            <li><a href="faqs.html">FAQS</a></li>
+            <li><a href="contact.html">CONTACT US</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Slider (Home Page) -->
+    <div id="home-page" class="page-content" style="display: none;">
+        <section class="hero">
+            <div class="slider">
+                <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');">
+                    <div class="slide-content">
+                        <h1>LOWCOUNTRY EXCELLENCE</h1>
+                        <p>Award winning, full service, custom home builder designing unique, elegant, showcase homes.</p>
+                        <a href="portfolio.html" class="btn">VIEW OUR CUSTOM HOME PORTFOLIO</a>
+                    </div>
+                </div>
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');">
+                    <div class="slide-content">
+                        <h1>AWARD WINNING DESIGNS</h1>
+                        <p>Creating unique, elegant homes that reflect your vision and lifestyle in the beautiful Lowcountry.</p>
+                        <a href="about.html" class="btn">LEARN MORE ABOUT US</a>
+                    </div>
+                </div>
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');">
+                    <div class="slide-content">
+                        <h1>YOUR DREAM HOME AWAITS</h1>
+                        <p>Let us help you design and build the custom home you've always envisioned.</p>
+                        <a href="contact.html" class="btn">CONTACT US TODAY</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <div class="slider-control active" data-slide="0"></div>
+                <div class="slider-control" data-slide="1"></div>
+                <div class="slider-control" data-slide="2"></div>
+            </div>
+        </section>
+
+        <!-- Featured Homes Section -->
+        <section class="container">
+            <h2 class="section-title">FEATURED HOMES</h2>
+            <div class="homes-grid">
+                <div class="home-card">
+                    <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Ballybunion II">
+                    <div class="home-card-content">
+                        <h3>Ballybunion II</h3>
+                        <div class="location">COLLETON RIVER / FEATURED HOMES</div>
+                        <p>Elegant custom home with classic Lowcountry design and modern amenities.</p>
+                    </div>
+                </div>
+                <div class="home-card">
+                    <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Bridgetown I">
+                    <div class="home-card-content">
+                        <h3>Bridgetown I</h3>
+                        <div class="location">WEXFORD</div>
+                        <p>Spacious family home with open floor plan and panoramic water views.</p>
+                    </div>
+                </div>
+                <div class="home-card">
+                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Inverness II">
+                    <div class="home-card-content">
+                        <h3>Inverness II</h3>
+                        <div class="location">COLLETON RIVER</div>
+                        <p>Luxurious retreat with custom finishes and attention to every detail.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonial Section -->
+        <section class="testimonial">
+            <div class="container">
+                <div class="testimonial-content">
+                    <p>Last summer my wife and I made the decision that we were going to build our first home. We spent countless hours interviewing companies and thinking about what we were looking for in a builder. We wanted a company that truly cared and would spend the time to make their clients comfortable with each decision they were making. We wanted to know that we could trust the people that were building our dream home. Anne and Scott at Southern Coastal Homes have exceeded our expectations in every aspect. They, along with Patrick and their entire team, have poured their heart and soul into getting our home designed and built during an incredibly challenging time. To us, they are not just professional custom home builders, we now consider them friends. To anyone looking to build a high-end custom home in the Lowcountry look no further than Southern Coastal Homes.</p>
+                    <p class="client-name">The Tokarski Family, Wexford</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Awards Section -->
+        <section class="awards">
+            <div class="container">
+                <h2 class="section-title">AWARDS & RECOGNITION</h2>
+                <div class="awards-content">
+                    <p>We are so very grateful to our clients, co-workers, vendor partners, and business associates for your support!</p>
+                    <div class="award-logo">
+                        <h3>Hilton Head Area Home Builders Association</h3>
+                        <p>Proud Member Since 2015</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about-page" class="page-content" style="display: none;">
+        <div class="page-header">
+            <div class="container">
+                <h1>ABOUT US</h1>
+            </div>
+        </div>
+        
+        <section class="container">
+            <div class="about-section">
+                <h2 class="section-title">Southern Coastal Homes</h2>
+                <p>Southern Coastal Homes is an award-winning, custom builder with a rich history in the building industry. We are a smaller-volume boutique builder focused purely on residential construction with a strong emphasis on personal attention and expert craftsmanship. Both of the business owners have over 25 years in the building industry, are extremely involved in each unique project, and are genuinely interested in delivering extraordinary results.</p>
+                
+                <p>Scott Middleton is a CPA who comes from the financial sector of the homebuilding business. He views your custom residence as not only the place you live and enjoy but also as a significant investment in your financial portfolio. His focus is to deliver both enjoyment and fiscal value in a home. Scott works in conjunction with each client to create realistic budgets and structure the monetary planning involved with a custom build.</p>
+                
+                <p>Anne Middleton is both an operations and design expert from the homebuilding industry. Anne and her team work closely with each client to ensure that form, function, and aesthetics are fused perfectly together to create the ideal custom home. Gone are the old days of the in-office showrooms – Anne works in partnership with you and true field experts to ensure you are selecting from the most innovative home design products available on the market.</p>
+                
+                <p>From our company owners to the marketing, operations, and project management, the Southern Coastal Homes team is fully committed to utilizing the highest quality of materials and building practices, while only working with carefully curated subcontractors and master craftsmen. Our innovative approach to home building has definitively set us apart from the competition.</p>
+                
+                <p><em>Let your dreams become our next project.</em></p>
+            </div>
+            
+            <div class="team">
+                <div class="team-member">
+                    <div class="team-member-img">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Scott Middleton">
+                    </div>
+                    <h3>Scott Middleton</h3>
+                    <p class="location">PRESIDENT</p>
+                    <p>Scott is a Licensed Residential Builder with over 25 years of residential building experience. Before founding Southern Coastal Homes, he owned a successful homebuilding and development company and was President of the South Carolina Coastal Division of Del Webb Corporation where he built more than 1,000 homes per year.</p>
+                    <blockquote>"When it comes to people, we only work with the best. We have assembled a team of skilled project managers and master craftsmen. We work collaboratively with our clients to create a home that exceeds expectations and holds its value for years to come."</blockquote>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-img">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Anne Middleton">
+                    </div>
+                    <h3>Anne Middleton</h3>
+                    <p class="location">CLIENT RELATIONS</p>
+                    <p>Anne is a 20-year real-estate and marketing veteran having worked in the residential and commercial building industry. Formerly Vice President of Sales & Marketing for a large national builder, Anne is now dedicated to helping bring Southern Coastal Homes' client vision of their ideal homes, to life.</p>
+                    <blockquote>"The architecture and the land in the Lowcountry is unlike anywhere else in the country. Blending the two for my clients has been the most rewarding part of my job."</blockquote>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Portfolio Page -->
+    <div id="portfolio-page" class="page-content" style="display: none;">
+        <div class="page-header">
+            <div class="container">
+                <h1>PORTFOLIO</h1>
+            </div>
+        </div>
+        
+        <section class="container">
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="featured">Featured Homes</button>
+                <button class="filter-btn" data-filter="remodels">Remodels</button>
+                <button class="filter-btn" data-filter="gallery">Home Gallery</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="featured">
+                    <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ballybunion II">
+                    <div class="portfolio-item-overlay">
+                        <h3>Ballybunion II</h3>
+                        <p>COLLETON RIVER / FEATURED HOMES</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="featured">
+                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Inverness II">
+                    <div class="portfolio-item-overlay">
+                        <h3>Inverness II</h3>
+                        <p>COLLETON RIVER</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="remodels">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Hobnoy Remodel">
+                    <div class="portfolio-item-overlay">
+                        <h3>Hobnoy: Remodel</h3>
+                        <p>FEATURED HOMES / PALMETTO BLUFF</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="gallery">
+                    <img src="https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ballybunion V">
+                    <div class="portfolio-item-overlay">
+                        <h3>Ballybunion V</h3>
+                        <p>HOME GALLERY</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="gallery">
+                    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Steam Gun">
+                    <div class="portfolio-item-overlay">
+                        <h3>Steam Gun</h3>
+                        <p>FEATURED HOMES / PORT ROYAL</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="gallery">
+                    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lynnfield II">
+                    <div class="portfolio-item-overlay">
+                        <h3>Lynnfield II</h3>
+                        <p>HOME GALLERY</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services-page" class="page-content" style="display: none;">
+        <div class="page-header">
+            <div class="container">
+                <h1>SERVICES</h1>
+            </div>
+        </div>
+        
+        <section class="container">
+            <h2 class="section-title">OUR SERVICES</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">At Southern Coastal Homes, we offer a comprehensive range of services to bring your dream home to life. From initial design to final construction, we are with you every step of the way.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-drafting-compass"></i>
+                    <h3>Custom Home Design</h3>
+                    <p>Collaborative design process to create a home that reflects your vision, lifestyle, and personality with expert guidance on architecture and aesthetics.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-home"></i>
+                    <h3>New Home Construction</h3>
+                    <p>Full-service construction of high-quality custom homes using the finest materials and craftsmanship, with attention to every detail.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Renovation & Remodeling</h3>
+                    <p>Transforming existing homes to meet your changing needs while preserving the character and charm of the original structure.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>Project Management</h3>
+                    <p>Comprehensive oversight of your project from concept to completion, ensuring timelines, budgets, and quality standards are met.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-palette"></i>
+                    <h3>Interior Design Consultation</h3>
+                    <p>Expert guidance on interior finishes, fixtures, and furnishings to create cohesive and beautiful living spaces throughout your home.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Client Relationship Management</h3>
+                    <p>Dedicated support throughout your building journey, ensuring clear communication and a smooth, enjoyable experience.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FAQ Page -->
+    <div id="faqs-page" class="page-content" style="display: none;">
+        <div class="page-header">
+            <div class="container">
+                <h1>FREQUENTLY ASKED QUESTIONS</h1>
+            </div>
+        </div>
+        
+        <section class="container">
+            <h2 class="section-title">FAQ ABOUT THE HOME BUILDING PROCESS</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        <span>HOW DO I KNOW SOUTHERN COASTAL HOMES IS THE RIGHT BUILDER FOR ME?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>At Southern Coastal Homes we truly believe that building your dream home is a collaborative effort. Your home should be a reflection of you and the things you love. It should be thoughtfully designed to reflect the way you want to utilize your spaces. We listen closely and help to translate your ideas into your vision.</p>
+                        <p>We pride ourselves on building a spectacular home at a fair and reasonable price and we firmly believe you will find our company fair and transparent. Anyone can build to a plan. It truly gets down to our commitment, mastery of craftsmanship, attention to detail, focus on quality, and quite frankly… trust between the client and the builder.</p>
+                        <p>We encourage you to start a discussion. We would love to help.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>WHAT MAKES SOUTHERN COASTAL HOMES UNIQUE?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We are a boutique custom home builder focused on personal attention and expert craftsmanship. Our owners have over 25 years of experience and are directly involved in every project. We combine financial expertise with design excellence to create homes that are both beautiful and valuable investments.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>WHAT IS YOUR PRICE PER SQUARE FOOT?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Because we build truly custom homes, our prices vary depending on the complexity of design, materials selected, and site conditions. We provide transparent, detailed estimates for each project after understanding your specific needs and preferences. We focus on delivering value through quality craftsmanship rather than competing on price alone.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>HOW LONG DOES IT TAKE TO BUILD A NEW HOME?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The timeline for building a custom home typically ranges from 9 to 18 months, depending on the size and complexity of the project, as well as current market conditions. We provide a detailed project timeline during the planning phase and maintain regular communication throughout the process to keep you informed of progress.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>I LIVE OUT OF STATE RIGHT NOW, BUT AM MOVING TO THE LOWCOUNTRY. CAN I STILL BUILD A HOME WITH YOU?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We have extensive experience working with clients who are relocating to the area. We utilize technology for virtual meetings, provide regular photo updates, and ensure clear communication throughout the process. Many of our clients successfully build their dream homes while living out of state.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>WHERE DOES SOUTHERN COASTAL HOMES BUILD?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We build throughout the South Carolina Lowcountry, including Bluffton, Hilton Head Island, Beaufort, and surrounding areas. We have experience building in many of the region's premier communities including Colleton River, Wexford, Palmetto Bluff, Belfair, and Port Royal.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact-page" class="page-content" style="display: none;">
+        <div class="page-header">
+            <div class="container">
+                <h1>CONTACT US</h1>
+            </div>
+        </div>
+        
+        <section class="container">
+            <div class="contact-container">
+                <div>
+                    <h2 class="section-title">GET IN TOUCH WITH US</h2>
+                    <p>Want more information about Southern Coastal Homes? We'd love to hear from you. Enter your information below and we'll be in touch shortly.</p>
+                    <p>If you'd prefer to chat, give us a call at <strong>843-815-0100</strong>.</p>
+                    
+                    <div class="contact-info">
+                        <h3 style="margin-top: 2rem;">CONTACT INFORMATION</h3>
+                        <p><i class="fas fa-phone"></i> Phone: 843-815-0100</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Office: 19 Pritchard St. Bluffton, SC 29910</p>
+                        <p><i class="fas fa-clock"></i> Office Hours: M-F 9am - 5pm</p>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <form class="contact-form">
+                        <h3>CONTACT FORM</h3>
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                            <input type="text" placeholder="First Name" required style="flex: 1;">
+                            <input type="text" placeholder="Last Name" required style="flex: 1;">
+                        </div>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="tel" placeholder="Your Phone Number">
+                        <textarea placeholder="How Can We Help You?"></textarea>
+                        <button type="submit" class="btn">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Map Section -->
+        <section style="padding-top: 0;">
+            <div class="container">
+                <h2 class="section-title">COME VISIT US</h2>
+                <div style="height: 400px; background-color: var(--beige); display: flex; align-items: center; justify-content: center; border-radius: 3px;">
+                    <div style="text-align: center;">
+                        <i class="fas fa-map-marker-alt" style="font-size: 3rem; color: var(--gold); margin-bottom: 1rem;"></i>
+                        <h3>Our Office Location</h3>
+                        <p>19 Pritchard St., Bluffton, SC 29910</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Southern Coastal Homes</h3>
+                    <p>Award-winning, full service, custom home builder designing unique, elegant, showcase homes in the Lowcountry.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> 843-815-0100</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 19 Pritchard St. Bluffton, SC 29910</p>
+                        <p><i class="fas fa-clock"></i> M-F 9am - 5pm</p>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Home Gallery</h3>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                        <div style="height: 80px; background-color: rgba(255,255,255,0.1);"></div>
+                        <div style="height: 80px; background-color: rgba(255,255,255,0.1);"></div>
+                        <div style="height: 80px; background-color: rgba(255,255,255,0.1);"></div>
+                        <div style="height: 80px; background-color: rgba(255,255,255,0.1);"></div>
+                        <div style="height: 80px; background-color: rgba(255,255,255,0.1);"></div>
+                        <div style="height: 80px; background-color: rgba(255,255,255,0.1);"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>A PROUD MEMBER OF THE HILTON HEAD AREA HOME BUILDERS ASSOCIATION</p>
+                <p style="margin-top: 1rem;">COPYRIGHT 2025 - SOUTHERN COASTAL HOMES</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Single page application navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all page elements
+            const pages = {
+                home: document.getElementById('home-page'),
+                about: document.getElementById('about-page'),
+                portfolio: document.getElementById('portfolio-page'),
+                services: document.getElementById('services-page'),
+                faqs: document.getElementById('faqs-page'),
+                contact: document.getElementById('contact-page')
+            };
+            
+            // Get all navigation links
+            const navLinks = document.querySelectorAll('nav a, .mobile-nav a');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNavClose = document.getElementById('mobileNavClose');
+            const overlay = document.getElementById('overlay');
+            
+            // Show home page by default
+            showPage('home');
+            
+            // Set up navigation
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageName = this.getAttribute('href').replace('.html', '');
+                    
+                    // Close mobile menu if open
+                    mobileNav.classList.remove('active');
+                    overlay.classList.remove('active');
+                    
+                    // Show the selected page
+                    showPage(pageName);
+                    
+                    // Update URL without reloading
+                    history.pushState({page: pageName}, '', `${pageName}.html`);
+                });
+            });
+            
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileNav.classList.add('active');
+                overlay.classList.add('active');
+            });
+            
+            mobileNavClose.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+            
+            overlay.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+            
+            // Handle browser back/forward buttons
+            window.addEventListener('popstate', function(e) {
+                if (e.state && e.state.page) {
+                    showPage(e.state.page);
+                } else {
+                    showPage('home');
+                }
+            });
+            
+            // Function to show a specific page
+            function showPage(pageName) {
+                // Hide all pages
+                Object.values(pages).forEach(page => {
+                    if (page) page.style.display = 'none';
+                });
+                
+                // Show the requested page
+                if (pages[pageName]) {
+                    pages[pageName].style.display = 'block';
+                    
+                    // If it's the home page, initialize the slider
+                    if (pageName === 'home') {
+                        initSlider();
+                    }
+                    
+                    // If it's the portfolio page, initialize the filter
+                    if (pageName === 'portfolio') {
+                        initPortfolioFilter();
+                    }
+                    
+                    // If it's the FAQ page, initialize the accordion
+                    if (pageName === 'faqs') {
+                        initFAQAccordion();
+                    }
+                    
+                    // Scroll to top when changing pages
+                    window.scrollTo(0, 0);
+                }
+            }
+            
+            // Initialize the slider on home page
+            function initSlider() {
+                const slides = document.querySelectorAll('.slide');
+                const controls = document.querySelectorAll('.slider-control');
+                let currentSlide = 0;
+                let slideInterval;
+                
+                // Function to show a specific slide
+                function showSlide(index) {
+                    // Hide all slides
+                    slides.forEach(slide => {
+                        slide.classList.remove('active');
+                    });
+                    
+                    // Remove active class from all controls
+                    controls.forEach(control => {
+                        control.classList.remove('active');
+                    });
+                    
+                    // Show the selected slide
+                    slides[index].classList.add('active');
+                    controls[index].classList.add('active');
+                    
+                    currentSlide = index;
+                }
+                
+                // Function to go to next slide
+                function nextSlide() {
+                    let nextIndex = (currentSlide + 1) % slides.length;
+                    showSlide(nextIndex);
+                }
+                
+                // Set up automatic sliding
+                function startSlider() {
+                    slideInterval = setInterval(nextSlide, 4000);
+                }
+                
+                // Stop automatic sliding
+                function stopSlider() {
+                    clearInterval(slideInterval);
+                }
+                
+                // Set up manual controls
+                controls.forEach((control, index) => {
+                    control.addEventListener('click', function() {
+                        stopSlider();
+                        showSlide(index);
+                        startSlider();
+                    });
+                });
+                
+                // Pause slider on hover
+                const slider = document.querySelector('.slider');
+                if (slider) {
+                    slider.addEventListener('mouseenter', stopSlider);
+                    slider.addEventListener('mouseleave', startSlider);
+                }
+                
+                // Initialize the slider
+                showSlide(0);
+                startSlider();
+            }
+            
+            // Initialize portfolio filter
+            function initPortfolioFilter() {
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                const portfolioItems = document.querySelectorAll('.portfolio-item');
+                
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Remove active class from all buttons
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        
+                        // Add active class to clicked button
+                        this.classList.add('active');
+                        
+                        const filterValue = this.getAttribute('data-filter');
+                        
+                        // Show/hide portfolio items based on filter
+                        portfolioItems.forEach(item => {
+                            if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                                item.style.display = 'block';
+                                setTimeout(() => {
+                                    item.style.opacity = '1';
+                                    item.style.transform = 'scale(1)';
+                                }, 10);
+                            } else {
+                                item.style.opacity = '0';
+                                item.style.transform = 'scale(0.8)';
+                                setTimeout(() => {
+                                    item.style.display = 'none';
+                                }, 300);
+                            }
+                        });
+                    });
+                });
+            }
+            
+            // Initialize FAQ accordion
+            function initFAQAccordion() {
+                const faqItems = document.querySelectorAll('.faq-item');
+                
+                faqItems.forEach(item => {
+                    const question = item.querySelector('.faq-question');
+                    
+                    question.addEventListener('click', function() {
+                        // Close all other items
+                        faqItems.forEach(otherItem => {
+                            if (otherItem !== item && otherItem.classList.contains('active')) {
+                                otherItem.classList.remove('active');
+                            }
+                        });
+                        
+                        // Toggle current item
+                        item.classList.toggle('active');
+                    });
+                });
+            }
+            
+            // Header scroll effect
+            const header = document.getElementById('header');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Contact form submission
+            const contactForm = document.querySelector('.contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you shortly.');
+                    contactForm.reset();
+                });
+            }
+            
+            // Initialize the home page slider
+            initSlider();
+            
+            // Initialize portfolio filter if on portfolio page
+            if (window.location.pathname.includes('portfolio')) {
+                initPortfolioFilter();
+            }
+            
+            // Initialize FAQ accordion if on FAQ page
+            if (window.location.pathname.includes('faqs')) {
+                initFAQAccordion();
+            }
+        });
+    </script>
+</body>
+</html>
